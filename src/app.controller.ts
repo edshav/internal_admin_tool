@@ -1,12 +1,13 @@
 import { Controller, Get } from '@nestjs/common';
 import { ProjectModel } from 'generated/prisma/models';
-import { PrismaService } from './prisma.service';
+import { ProjectService } from './project/project.service';
+
 @Controller()
 export class AppController {
-  constructor(private readonly prismaService: PrismaService) {}
+  constructor(private readonly projectService: ProjectService) {}
 
-  @Get('users')
-  getAllProjects(): Promise<ProjectModel[]> {
-    return this.prismaService.project.findMany();
+  @Get('projects')
+  async getAllProjects(): Promise<ProjectModel[]> {
+    return this.projectService.projects();
   }
 }
