@@ -20,6 +20,31 @@ async function main() {
   });
 
   console.log('✅ Admin user seeded');
+
+  const admin = await prisma.user.findUnique({
+    where: { email: 'admin@example.com' },
+  });
+
+  if (!admin) return;
+
+  // Create customer first
+  const customer = await prisma.customer.create({
+    data: {
+      name: 'Acme Corp',
+      email: 'contact@acme.com',
+    },
+  });
+
+  // Then create project with customerId
+  await prisma.project.create({
+    data: {
+      name: 'Internal Admin Tool',
+      ownerId: admin.id,
+      customerId: customer.id,
+    },
+  });
+
+  console.log('✅ Admin project seeded');
 }
 
 main()

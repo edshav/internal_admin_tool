@@ -1,19 +1,22 @@
 import { Injectable } from '@nestjs/common';
-import { Prisma } from 'generated/prisma/client';
-import { AuthenticatedUser } from 'src/auth/current_user.decorator';
+import { UserContext } from 'src/common/types/user-context';
 import { PrismaService } from 'src/prisma.service';
 
 @Injectable()
 export class ProjectService {
   constructor(private prisma: PrismaService) {}
 
-  projects(userContext: AuthenticatedUser) {
-    const queryOptions: Prisma.ProjectFindManyArgs = {};
-    if (userContext.role === 'USER') {
-      queryOptions.where = {
-        ownerId: userContext.id,
-      };
-    }
-    return this.prisma.project.findMany(queryOptions);
+  projects(userContext: UserContext) {
+    const where =
+      userContext.role === 'USER' ? { ownerId: userContext.id } : undefined;
+
+    return this.prisma.project.findMany({
+      where,
+      include: {
+        customer: {
+          select: { id: true, name: true },
+        },
+      },
+    });
   }
 }
