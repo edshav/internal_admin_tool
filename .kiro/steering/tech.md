@@ -4,7 +4,7 @@
 
 **Backend Framework:** NestJS v11 (Node.js/TypeScript)
 **Database:** PostgreSQL with Prisma ORM v7
-**Authentication:** JWT with Passport.js
+**Authentication:** JWT Bearer tokens with Passport.js
 **Package Manager:** pnpm
 **Runtime:** Node.js with ES2023 target
 

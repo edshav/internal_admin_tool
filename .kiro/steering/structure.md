@@ -64,10 +64,15 @@ generated/prisma/         # Generated Prisma client
 
 ### Authentication Architecture
 
-- **JWT Strategy** with Passport.js
+- **JWT Bearer tokens** via Authorization header
+- **Access tokens** (short-lived) for API requests
+- **Refresh tokens** (longer-lived) for token renewal
+- **Passport.js JWT strategy** for token validation
 - **Guards** for route protection
 - **Decorators** for user context injection
 - **Role-based** access control (ADMIN/USER)
+- **Cross-domain deployment** support (frontend/backend separation)
+- **No CSRF protection** required (Bearer tokens not auto-attached)
 
 ## API Design Patterns
 
@@ -135,7 +140,9 @@ PATCH /projects/:id     # Owner or admin
 
 ### Security Patterns
 
-- **JWT tokens** in HTTP-only cookies
+- **JWT Bearer tokens** via Authorization header
+- **Access/refresh token** pattern for secure authentication
 - **Password hashing** with bcrypt
 - **Role-based guards** on protected routes
 - **Input validation** on all endpoints
+- **Cross-domain deployment** ready (no CSRF concerns)

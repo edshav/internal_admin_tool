@@ -22,7 +22,7 @@ This is an internal administration system for managing company data with strict 
 
 - Internal-facing only (not public)
 - Single-tenant architecture
-- Security-focused with JWT authentication
+- Security-focused with JWT Bearer token authentication
 - PostgreSQL-backed data persistence
 - Role-based permissions (ADMIN vs USER)
 
