@@ -1,6 +1,6 @@
 import { Controller, Get, UseGuards } from '@nestjs/common';
-import { CurrentUser } from 'src/auth/current_user.decorator';
-import { JwtAuthGuard } from 'src/auth/jwt.guard';
+import { CurrentUser } from 'src/auth/current-user.decorator';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import type { UserContext } from 'src/common/types/user-context';
 import { ProjectService } from './project.service';
 

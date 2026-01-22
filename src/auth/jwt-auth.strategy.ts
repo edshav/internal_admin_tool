@@ -4,7 +4,7 @@ import { Role } from 'generated/prisma/client';
 import { ExtractJwt, Strategy, StrategyOptions } from 'passport-jwt';
 
 @Injectable()
-export class JwtStrategy extends PassportStrategy(Strategy) {
+export class JwtAuthStrategy extends PassportStrategy(Strategy) {
   constructor() {
     const jwtSecret = process.env.JWT_SECRET;
     if (!jwtSecret) {
